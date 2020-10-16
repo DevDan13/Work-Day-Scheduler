@@ -1,97 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>Work Day Scheduler</title>
-  </head>
 
-  <body>
-    <header class="jumbotron">
-      <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead"></p>
-    </header>
-    <div class="container">
-      <!-- Timeblocks go here -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Work Day Scheduler</title>
+</head>
+
+<body>
+  <header class="jumbotron">
+    <h1 class="display-3">Work Day Scheduler</h1>
+    <p class="lead">A simple calendar app for scheduling your work day</p>
+    <p id="currentDay" class="lead"></p>
+  </header>
+  <div class="container">
+    <!-- Timeblocks go here -->
+    <div class="row time-block" id="hour-9">
+
+      <div class="col-sm-1">
+        9am
+      </div>
+
+      <textarea class="col-sm-10 description">
+
+      </textarea>
+
+
+      <button class="col-sm-1 btn saveBtn"></button>
+
+    </div>
+   
+    <div class="row time-block" id="hour-10">
+
+      <div class="col-sm-1">
+        10am
+      </div>
+
+      <textarea class="col-sm-10 description">
+
+      </textarea>
+
+
+      <button class="col-sm-1 btn saveBtn"></button>
+
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <!-- <script src="script.js"></script> -->
+    <div class="row time-block" id="hour-11">
 
-    <script>
-      //will copy to js file if solution found and neccesary
+      <div class="col-sm-1">
+        11am
+      </div>
 
-      //which tags to dynamically create using jQuery?
+      <textarea class="col-sm-10 description">
 
-      var hours = ["9AM","10AM","11AM","12PM","1PM","2PM","3PM","4PM","5PM"];
+      </textarea>
 
-      var container = $(".container");
 
-      var currentDay =$("#currentDay");
-      currentDay.text(moment().weekday(0));
-      console.log("the CurrentDay: ", currentDay);
+      <button class="col-sm-1 btn saveBtn"></button>
 
-      var currentHour = moment().hour();
-      // var plannerList = $("<ul>"); //need these?
-      // var plannerRow = $("<li>");
+    </div>
 
-      //create a for loop to dynamically create rows and collumns
-      for(i = 0; i < hours.length; i++){
-        
-        //created row div tag and given the time-block class
-        var blockRow = $("<div>");
-        blockRow.addClass("row time-block");
+    <div class="row time-block" id="hour-12">
 
-        //created the col div 
-        var blockCol = $("<div>");
-        blockCol.addClass("col-sm-2");
-        
-        //change to blockColHour?
-        var blockHour = $("<div>");
-        blockHour.attr("block-hour",hours[i]);
-        blockHour.text(hours[i]);
-        blockCol.append(blockHour);
+      <div class="col-sm-1">
+        12pm
+      </div>
 
-        var blockCol2 = $("<div>");
-        blockCol2.addClass("col-sm-8");
-        var textArea = $("<textarea>");
+      <textarea class="col-sm-10 description">
 
-        //need another var for conditional?
-        if(currentHour > blockHour){
-          textArea.addClass("past");
-        }
-        else if(currentHour < blockHour){
-          textArea.removeClass("past");
-          textArea.addClass("future");
-        }
-        else{
-          textArea.removeClass("past future");
-          textArea.addClass("future");
-        }
+      </textarea>
 
-        //make a var to store all three col's like final col and append that var to block row
-        blockRow.append(blockCol);
-        container.append(blockRow);
+
+      <button class="col-sm-1 btn saveBtn"></button>
+
+    </div>
+
+    <div class="row time-block" id="hour-13">
+
+      <div class="col-sm-1">
+        1pm
+      </div>
+
+      <textarea class="col-sm-10 description">
+
+      </textarea>
+
+
+      <button class="col-sm-1 btn saveBtn"></button>
+
+    </div>
+
+    <div class="row time-block" id="hour-14">
+
+      <div class="col-sm-1">
+        2pm
+      </div>
+
+      <textarea class="col-sm-10 description">
+
+      </textarea>
+
+
+      <button class="col-sm-1 btn saveBtn"></button>
+
+    </div>
+
+    <div class="row time-block" id="hour-15">
+
+      <div class="col-sm-1">
+        3pm
+      </div>
+
+      <textarea class="col-sm-10 description">
+
+      </textarea>
+
+
+      <button class="col-sm-1 btn saveBtn"></button>
+
+    </div>
+    <div class="row time-block" id="hour-16">
+
+      <div class="col-sm-1">
+        4pm
+      </div>
+
+      <textarea class="col-sm-10 description">
+
+      </textarea>
+
+
+      <button class="col-sm-1 btn saveBtn"></button>
+
+    </div>
+
+    <div class="row time-block" id="hour-17">
+
+      <div class="col-sm-1">
+        5pm
+      </div>
+
+      <textarea class="col-sm-10 description">
+
+      </textarea>
+
+
+      <button class="col-sm-1 btn saveBtn"></button>
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <!-- <script src="script.js"></script> -->
+
+  <script>
+    //will copy to js file if solution found and neccesary
+
+    //which tags to dynamically create using jQuery?
+
+    var hours = [9,10,11,12,13,14,15,16,17];
+
+    var container = $(".container");
+
+    var currentDay = $("#currentDay");
+    currentDay.text(moment().weekday(0).format("dddd, MMMM Do YYYY"));
+    console.log("the CurrentDay: ", currentDay);
+
+    var currentHour = moment().hour();
+    
+    //create a for loop to dynamically create rows and collumns
+    for (i = 0; i < hours.length; i++) {
+
+      //created row div tag and given the time-block class
+      //var blockRow = $("<div>");
+      blockRow.addClass("row time-block");
+
+      //created the col div 
+      //var blockCol = $("<div>");
+      blockCol.addClass("col-sm-2");
+
+      //change to blockColHour?
+      // var blockHour = $("<div>");
+      blockHour.attr("block-hour", hours[i]);
+      blockHour.text(hours[i]);
+      blockCol.append(blockHour);
+
+      //var blockCol2 = $("<div>");
+      blockCol2.addClass("col-sm-8");
+      var textArea = $("<textarea>");
+
+      //need another var for conditional?
+      if (currentHour > blockHour) {
+        textArea.addClass("past");
+      }
+      else if (currentHour < blockHour) {
+        textArea.removeClass("past");
+        textArea.addClass("future");
+      }
+      else {
+        textArea.removeClass("past future");
+        textArea.addClass("future");
       }
 
-    </script>
-  </body>
+      //make a var to store all three col's like final col and append that var to block row
+      blockRow.append(blockCol);
+      container.append(blockRow);
+    }
+
+  </script>
+</body>
+
 </html>
