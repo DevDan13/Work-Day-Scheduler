@@ -21,13 +21,13 @@
   </header>
   <div class="container">
     <!-- Timeblocks go here -->
-    <div class="row time-block" id="hour-9">
+    <div class="row time-block">
 
       <div class="col-sm-1">
         9am
       </div>
 
-      <textarea class="col-sm-10 description">
+      <textarea class="col-sm-10 description" id="hour-9">
 
       </textarea>
 
@@ -36,13 +36,13 @@
 
     </div>
    
-    <div class="row time-block" id="hour-10">
+    <div class="row time-block">
 
       <div class="col-sm-1">
         10am
       </div>
 
-      <textarea class="col-sm-10 description">
+      <textarea class="col-sm-10 description" id="hour-10">
 
       </textarea>
 
@@ -51,13 +51,13 @@
 
     </div>
 
-    <div class="row time-block" id="hour-11">
+    <div class="row time-block">
 
       <div class="col-sm-1">
         11am
       </div>
 
-      <textarea class="col-sm-10 description">
+      <textarea class="col-sm-10 description" id="hour-11">
 
       </textarea>
 
@@ -66,13 +66,13 @@
 
     </div>
 
-    <div class="row time-block" id="hour-12">
+    <div class="row time-block">
 
       <div class="col-sm-1">
         12pm
       </div>
 
-      <textarea class="col-sm-10 description">
+      <textarea class="col-sm-10 description" id="hour-12">
 
       </textarea>
 
@@ -81,13 +81,13 @@
 
     </div>
 
-    <div class="row time-block" id="hour-13">
+    <div class="row time-block">
 
       <div class="col-sm-1">
         1pm
       </div>
 
-      <textarea class="col-sm-10 description">
+      <textarea class="col-sm-10 description" id="hour-13">
 
       </textarea>
 
@@ -96,13 +96,13 @@
 
     </div>
 
-    <div class="row time-block" id="hour-14">
+    <div class="row time-block">
 
       <div class="col-sm-1">
         2pm
       </div>
 
-      <textarea class="col-sm-10 description">
+      <textarea class="col-sm-10 description" id="hour-14">
 
       </textarea>
 
@@ -111,13 +111,13 @@
 
     </div>
 
-    <div class="row time-block" id="hour-15">
+    <div class="row time-block">
 
       <div class="col-sm-1">
         3pm
       </div>
 
-      <textarea class="col-sm-10 description">
+      <textarea class="col-sm-10 description" id="hour-15">
 
       </textarea>
 
@@ -125,13 +125,14 @@
       <button class="col-sm-1 btn saveBtn"></button>
 
     </div>
-    <div class="row time-block" id="hour-16">
+
+    <div class="row time-block">
 
       <div class="col-sm-1">
         4pm
       </div>
 
-      <textarea class="col-sm-10 description">
+      <textarea class="col-sm-10 description" id="hour-16">
 
       </textarea>
 
@@ -140,13 +141,13 @@
 
     </div>
 
-    <div class="row time-block" id="hour-17">
+    <div class="row time-block">
 
       <div class="col-sm-1">
         5pm
       </div>
 
-      <textarea class="col-sm-10 description">
+      <textarea class="col-sm-10 description" id="hour-17">
 
       </textarea>
 
@@ -158,62 +159,76 @@
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <!-- <script src="script.js"></script> -->
 
   <script>
-    //will copy to js file if solution found and neccesary
-
-    //which tags to dynamically create using jQuery?
 
     var hours = [9,10,11,12,13,14,15,16,17];
 
-    var container = $(".container");
+    // var hour9 = $("#hour-9");
+   
+    var blockHours = [
+
+      {
+        hour: $("#hour-9")
+      },
+
+      {
+        hour: $("#hour-10")
+      },
+
+      {
+        hour: $("#hour-11")
+      },
+
+      {
+        hour: $("#hour-12")
+      },
+
+      {
+        hour: $("#hour-13")
+      },
+
+      {
+        hour: $("#hour-14")
+      },
+
+      {
+        hour: $("#hour-15")
+      },
+
+      {
+        hour: $("#hour-16")
+      },
+
+      {
+        hour: $("#hour-17")
+      },
+    ];
 
     var currentDay = $("#currentDay");
     currentDay.text(moment().weekday(0).format("dddd, MMMM Do YYYY"));
-    console.log("the CurrentDay: ", currentDay);
-
     var currentHour = moment().hour();
-    
-    //create a for loop to dynamically create rows and collumns
+
+    //create a for loop to run the conditionals or all the rows
     for (i = 0; i < hours.length; i++) {
 
-      //created row div tag and given the time-block class
-      //var blockRow = $("<div>");
-      blockRow.addClass("row time-block");
-
-      //created the col div 
-      //var blockCol = $("<div>");
-      blockCol.addClass("col-sm-2");
-
-      //change to blockColHour?
-      // var blockHour = $("<div>");
-      blockHour.attr("block-hour", hours[i]);
-      blockHour.text(hours[i]);
-      blockCol.append(blockHour);
-
-      //var blockCol2 = $("<div>");
-      blockCol2.addClass("col-sm-8");
-      var textArea = $("<textarea>");
-
-      //need another var for conditional?
-      if (currentHour > blockHour) {
-        textArea.addClass("past");
-      }
-      else if (currentHour < blockHour) {
-        textArea.removeClass("past");
-        textArea.addClass("future");
-      }
-      else {
-        textArea.removeClass("past future");
-        textArea.addClass("future");
+      if (currentHour > hours[i]){
+        blockHours[i].hour.addClass("past");
       }
 
-      //make a var to store all three col's like final col and append that var to block row
-      blockRow.append(blockCol);
-      container.append(blockRow);
+      else if(currentHour < hours[i]){
+        blockHours[i].hour.removeClass("past");
+        blockHours[i].hour.addClass("future");
+      }
+
+      else{
+        blockHours[i].hour.removeClass("past");
+        blockHours[i].hour.removeClass("future");
+        blockHours[i].hour.addClass("present");
+      }
+
+      
     }
-
   </script>
 </body>
 
