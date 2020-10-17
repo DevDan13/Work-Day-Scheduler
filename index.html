@@ -32,7 +32,7 @@
       </textarea>
 
 
-      <button class="col-sm-1 btn saveBtn"></button>
+      <button class="col-sm-1 btn saveBtn fas fa-lock"></button>
 
     </div>
    
@@ -47,7 +47,7 @@
       </textarea>
 
 
-      <button class="col-sm-1 btn saveBtn"></button>
+      <button class="col-sm-1 btn saveBtn fas fa-lock"></button>
 
     </div>
 
@@ -62,7 +62,7 @@
       </textarea>
 
 
-      <button class="col-sm-1 btn saveBtn"></button>
+      <button class="col-sm-1 btn saveBtn fas fa-lock"></button>
 
     </div>
 
@@ -77,7 +77,7 @@
       </textarea>
 
 
-      <button class="col-sm-1 btn saveBtn"></button>
+      <button class="col-sm-1 btn saveBtn fas fa-lock"></button>
 
     </div>
 
@@ -92,7 +92,7 @@
       </textarea>
 
 
-      <button class="col-sm-1 btn saveBtn"></button>
+      <button class="col-sm-1 btn saveBtn fas fa-lock"></button>
 
     </div>
 
@@ -107,7 +107,7 @@
       </textarea>
 
 
-      <button class="col-sm-1 btn saveBtn"></button>
+      <button class="col-sm-1 btn saveBtn fas fa-lock"></button>
 
     </div>
 
@@ -122,7 +122,7 @@
       </textarea>
 
 
-      <button class="col-sm-1 btn saveBtn"></button>
+      <button class="col-sm-1 btn saveBtn fas fa-lock"></button>
 
     </div>
 
@@ -137,7 +137,7 @@
       </textarea>
 
 
-      <button class="col-sm-1 btn saveBtn"></button>
+      <button class="col-sm-1 btn saveBtn fas fa-lock"></button>
 
     </div>
 
@@ -152,7 +152,7 @@
       </textarea>
 
 
-      <button class="col-sm-1 btn saveBtn"></button>
+      <button class="col-sm-1 btn saveBtn fas fa-lock"></button>
 
     </div>
   </div>
@@ -161,74 +161,94 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
   <script>
+    
+    $(document).ready(function() {
+      //array of hours to be used in the conditionals compared to the currentHour variable.
+      var hours = [9,10,11,12,13,14,15,16,17];
+    
+      //an array of objects with a key hours. each index contains a key which contains a reference to its specfic time block
+      var blockHours = [
 
-    var hours = [9,10,11,12,13,14,15,16,17];
+        {
+          hour: $("#hour-9")
+        },
 
-    // var hour9 = $("#hour-9");
-   
-    var blockHours = [
+        {
+          hour: $("#hour-10")
+        },
 
-      {
-        hour: $("#hour-9")
-      },
+        {
+          hour: $("#hour-11")
+        },
 
-      {
-        hour: $("#hour-10")
-      },
+        {
+          hour: $("#hour-12")
+        },
 
-      {
-        hour: $("#hour-11")
-      },
+        {
+          hour: $("#hour-13")
+        },
 
-      {
-        hour: $("#hour-12")
-      },
+        {
+          hour: $("#hour-14")
+        },
 
-      {
-        hour: $("#hour-13")
-      },
+        {
+          hour: $("#hour-15")
+        },
 
-      {
-        hour: $("#hour-14")
-      },
+        {
+          hour: $("#hour-16")
+        },
 
-      {
-        hour: $("#hour-15")
-      },
-
-      {
-        hour: $("#hour-16")
-      },
-
-      {
-        hour: $("#hour-17")
-      },
-    ];
-
-    var currentDay = $("#currentDay");
-    currentDay.text(moment().weekday(0).format("dddd, MMMM Do YYYY"));
-    var currentHour = moment().hour();
-
-    //create a for loop to run the conditionals or all the rows
-    for (i = 0; i < hours.length; i++) {
-
-      if (currentHour > hours[i]){
-        blockHours[i].hour.addClass("past");
-      }
-
-      else if(currentHour < hours[i]){
-        blockHours[i].hour.removeClass("past");
-        blockHours[i].hour.addClass("future");
-      }
-
-      else{
-        blockHours[i].hour.removeClass("past");
-        blockHours[i].hour.removeClass("future");
-        blockHours[i].hour.addClass("present");
-      }
-
+        {
+          hour: $("#hour-17")
+        },
+      ];
       
-    }
+      //sets the current day displayed in the jumbotron
+      var currentDay = $("#currentDay");
+      currentDay.text(moment().weekday(0).format("dddd, MMMM Do YYYY"));
+
+      //fetches the current hour to be used to set the text area to the proper class depending on the time.
+      var currentHour = moment().hour();
+
+      //create a for loop to run the conditionals or all the rows uses array of objects blockHours with keys that refference one of each hours 
+      //in the hours array.  If currentHour is less than, greater than, or equal to the hour in the array, the referenced field is given the 
+      //appropriate class.
+      for (i = 0; i < hours.length; i++) {
+
+        if (currentHour > hours[i]){
+          blockHours[i].hour.addClass("past");
+        }
+
+        else if(currentHour < hours[i]){
+          blockHours[i].hour.removeClass("past");
+          blockHours[i].hour.addClass("future");
+        }
+
+        else{
+          blockHours[i].hour.removeClass("past");
+          blockHours[i].hour.removeClass("future");
+          blockHours[i].hour.addClass("present");
+        }
+      }
+
+      var saveButton = $("button");
+
+      var textArea = $("textArea");
+
+      var saveText = localStorage.getItem("saveText");
+
+      saveButton.on("click", function(){
+
+        textArea.text($(this).attr("text-area"));
+        localStorage.setItem("saveText", saveText);
+      });
+
+    });
+    //saveButton.text("button");
+    //console.log(saveButton.text("button"));
   </script>
 </body>
 
