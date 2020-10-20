@@ -98,4 +98,4 @@ https://devdan13.github.io/Work-Day-Scheduler/
 
 ## Demo Picture
 
-![image](https://user-images.githubusercontent.com/69943020/96529172-75542880-1252-11eb-8036-764f1c598746.png)
+![image](https://user-images.githubusercontent.com/69943020/96529353-f01d4380-1252-11eb-8b81-dd0ff61ac3d3.png)
